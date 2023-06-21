@@ -17,13 +17,27 @@
   <button onclick="
     userInput('scissor');
   ">Scissor</button>
+  <button onclick="
+  computerWon=0;userWon=0;tie=0;
+  alert('Score Reset');
+  ">Reset</button>
 </body>
   <script>
+    let computerWon=0,userWon=0,tie=0;
     function userInput(userInput) {
       let computerOutput=randomNumber();
-      if ((userInput==='stone' && computerOutput==='scissor') || (userInput==='paper' && computerOutput==='stone') || (userInput==='scissor' && computerOutput==='paper')) alert(`You have won\nYou have selected ${userInput} and computer selected ${computerOutput}`);
-      else if ((userInput==='stone' && computerOutput==='stone') || (userInput==='paper' && computerOutput==='paper') || (userInput==='scissor' && computerOutput==='scissor')) alert(`Tie\nYou have selected ${userInput} and computer selected ${computerOutput}`);
-      else if ((userInput==='stone' && computerOutput==='paper') || (userInput==='paper' && computerOutput==='scissor') || (userInput==='scissor' && computerOutput==='stone')) alert(`You have lost\nYou have selected ${userInput} and computer selected ${computerOutput}`);
+      if ((userInput==='stone' && computerOutput==='scissor') || (userInput==='paper' && computerOutput==='stone') || (userInput==='scissor' && computerOutput==='paper')) {
+        userWon++;
+        alert(`You have won\nYou have selected ${userInput} and computer selected ${computerOutput}\nYou won:${userWon} times\nComputer won:${computerWon} times\nTie:${tie} times`);
+      }
+      else if ((userInput==='stone' && computerOutput==='stone') || (userInput==='paper' && computerOutput==='paper') || (userInput==='scissor' && computerOutput==='scissor')) {
+        tie++;
+        alert(`Tie\nYou have selected ${userInput} and computer selected ${computerOutput}\nYou won:${userWon} times\nComputer won:${computerWon} times\nTie:${tie} times`);
+      }
+      else if ((userInput==='stone' && computerOutput==='paper') || (userInput==='paper' && computerOutput==='scissor') || (userInput==='scissor' && computerOutput==='stone')) {
+        computerWon++;
+        alert(`You have lost\nYou have selected ${userInput} and computer selected ${computerOutput}\nYou won:${userWon} times\nComputer won:${computerWon} times\nTie:${tie} times`);
+      }
     }
     function randomNumber() {
       let num=Math.random();
