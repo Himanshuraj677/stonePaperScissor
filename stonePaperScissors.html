@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stone Paper Scissor</title>
+</head>
+
+<body>
+  <button onclick="
+    userInput('stone');
+  ">Stone</button>
+  <button onclick=" 
+    userInput('paper');
+  ">Paper</button>
+  <button onclick="
+    userInput('scissor');
+  ">Scissor</button>
+</body>
+  <script>
+    function userInput(userInput) {
+      let computerOutput=randomNumber();
+      if ((userInput==='stone' && computerOutput==='scissor') || (userInput==='paper' && computerOutput==='stone') || (userInput==='scissor' && computerOutput==='paper')) alert(`You have won\nYou have selected ${userInput} and computer selected ${computerOutput}`);
+      else if ((userInput==='stone' && computerOutput==='stone') || (userInput==='paper' && computerOutput==='paper') || (userInput==='scissor' && computerOutput==='scissor')) alert(`Tie\nYou have selected ${userInput} and computer selected ${computerOutput}`);
+      else if ((userInput==='stone' && computerOutput==='paper') || (userInput==='paper' && computerOutput==='scissor') || (userInput==='scissor' && computerOutput==='stone')) alert(`You have lost\nYou have selected ${userInput} and computer selected ${computerOutput}`);
+    }
+    function randomNumber() {
+      let num=Math.random();
+      let computerOutput;
+      if (num>=0 && num<(1/3)) computerOutput='stone';
+      else if (num>=(1/3) && num<(2/3)) computerOutput='paper';
+      else computerOutput='scissor';
+      return computerOutput;
+    }
+  </script>
+</html>
