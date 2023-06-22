@@ -17,27 +17,39 @@
   <button onclick="
     userInput('scissor');
   ">Scissor</button>
-  <button onclick="
-  computerWon=0;userWon=0;tie=0;
-  alert('Score Reset');
-  ">Reset</button>
+  <button onclick="deleteScore()">Reset</button>
 </body>
   <script>
-    let computerWon=0,userWon=0,tie=0;
+    let score= JSON.parse(localStorage.getItem('result')) || {
+      computerWon:0,
+      userWon:0,
+      tie:0
+    };
+    function deleteScore () {
+      score={
+        computerWon: 0,
+        userWon: 0,
+        tie: 0
+      };
+      alert('Score Reset');
+    }
     function userInput(userInput) {
       let computerOutput=randomNumber();
       if ((userInput==='stone' && computerOutput==='scissor') || (userInput==='paper' && computerOutput==='stone') || (userInput==='scissor' && computerOutput==='paper')) {
-        userWon++;
-        alert(`You have won\nYou have selected ${userInput} and computer selected ${computerOutput}\nYou won:${userWon} times\nComputer won:${computerWon} times\nTie:${tie} times`);
+        score.userWon++;
+        alert(`You have won\nYou have selected ${userInput} and computer selected ${computerOutput}\nYou won:${score.userWon} times\nComputer won:${score.computerWon} times\nTie:${score.tie} times`);
       }
-      else if ((userInput==='stone' && computerOutput==='stone') || (userInput==='paper' && computerOutput==='paper') || (userInput==='scissor' && computerOutput==='scissor')) {
-        tie++;
-        alert(`Tie\nYou have selected ${userInput} and computer selected ${computerOutput}\nYou won:${userWon} times\nComputer won:${computerWon} times\nTie:${tie} times`);
+      else if ((userInput==='stone' && computerOutput==='stone') || 
+      (userInput==='paper' && computerOutput==='paper') || (userInput==='scissor' && computerOutput==='scissor')) {
+        score.tie++;
+        alert(`Tie\nYou have selected ${userInput} and computer selected ${computerOutput}\nYou won:${score.userWon} times\nComputer won:${score.computerWon} times\nTie:${score.tie} times`);
       }
-      else if ((userInput==='stone' && computerOutput==='paper') || (userInput==='paper' && computerOutput==='scissor') || (userInput==='scissor' && computerOutput==='stone')) {
-        computerWon++;
-        alert(`You have lost\nYou have selected ${userInput} and computer selected ${computerOutput}\nYou won:${userWon} times\nComputer won:${computerWon} times\nTie:${tie} times`);
+      else if
+        ((userInput==='stone' && computerOutput==='paper') || (userInput==='paper' && computerOutput==='scissor') || (userInput==='scissor' && computerOutput==='stone')) {
+        score.computerWon++;
+        alert(`You have lost\nYou have selected ${userInput} and computer selected ${computerOutput}\nYou won:${score.userWon} times\nComputer won:${score.computerWon} times\nTie:${score.tie} times`);
       }
+      localStorage.setItem('result',JSON.stringify(score));
     }
     function randomNumber() {
       let num=Math.random();
