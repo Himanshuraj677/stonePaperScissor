@@ -18,9 +18,8 @@
     userInput('scissor');
   ">Scissor</button>
   <button onclick="deleteScore()">Reset</button>
-  <br>
-  <br>
-  <a href="rockPaperScissor.html">Updated Code</a>
+  <br><br>
+  <a href="rockPaperScissor.html">Updated code</a>
 </body>
   <script>
     let score= JSON.parse(localStorage.getItem('result')) || {
@@ -34,6 +33,7 @@
         userWon: 0,
         tie: 0
       };
+      localStorage.removeItem('score');
       alert('Score Reset');
     }
     function userInput(userInput) {
